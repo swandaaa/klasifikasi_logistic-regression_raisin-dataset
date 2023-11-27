@@ -1,13 +1,15 @@
+import os
 import streamlit as st
 import numpy as np
 import joblib
 import pandas as pd
 
-# Muat model KNN yang telah dilatih
-loaded_scaler = joblib.load('scaler.pkl')
+current_directory = os.path.dirname(os.path.realpath(__file__))
+model_path = os.path.join(current_directory, 'LR_model.pkl')
+scaler_path = os.path.join(current_directory, 'scaler.pkl')
 
-# Muat model KNN yang telah dilatih
-LR_model = joblib.load('LR_model.pkl')
+LR_model = joblib.load(model_path)
+loaded_scaler = joblib.load(scaler_path)
 
 # Fungsi prediksi menggunakan model KNN dan PCA
 def raisin_classification(area, MajorAxisLength, MinorAxisLength, Eccentricity, ConvexArea, Extent, Perimeter):
